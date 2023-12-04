@@ -6,10 +6,11 @@ public class Clicking : MonoBehaviour
 
     
 {
-    public int Score = 0;
+    public int Cookies = 0;
     private SpriteRenderer Renderer;
     public Sprite Right_Paw, Left_Paw;
     private bool isRight;
+
 
 
 
@@ -17,20 +18,30 @@ public class Clicking : MonoBehaviour
     void Start()
     {
         Renderer = GetComponent<SpriteRenderer>();
+        StartCoroutine(AutoClic());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        print(Score);
+        print(Cookies);
     }
 
     private void OnMouseDown()
     {
-        Score++;
+        Cookies++;
         ChangePaw();
     }
 
+
+    public IEnumerator AutoClic()
+    {
+        while (true)
+        {
+            Cookies++;
+            ChangePaw();
+            yield return new WaitForSeconds(10);
+        }
+    }
 
     public void ChangePaw()
     {
