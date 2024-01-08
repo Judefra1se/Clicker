@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Clicking : MonoBehaviour
 
@@ -10,6 +12,7 @@ public class Clicking : MonoBehaviour
     private SpriteRenderer Renderer;
     public Sprite Right_Paw, Left_Paw;
     private bool isRight;
+    public TextMeshProUGUI Score_Text;
 
 
 
@@ -29,6 +32,7 @@ public class Clicking : MonoBehaviour
     private void OnMouseDown()
     {
         Cookies++;
+        Score_Text.text = "Score : " + Cookies;
         ChangePaw();
     }
 
@@ -38,6 +42,7 @@ public class Clicking : MonoBehaviour
         while (true)
         {
             Cookies++;
+            Score_Text.text = "Cookies : " + Cookies;
             ChangePaw();
             yield return new WaitForSeconds(10);
         }
