@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Shop : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class Shop : MonoBehaviour
     void Start()
     {
         Clicking = FindObjectOfType<Clicking>();
+        Power += 1;
         
     }
 
@@ -20,18 +23,19 @@ public class Shop : MonoBehaviour
     void Update()
     {
         Cookies = Clicking.Cookies;
-        Price = 100 * Power;
+        Price = 10 * Power;
         Clicking.Power = Power;
     }
 
-    public void Upgrade()
+    private void OnMouseDown()
     {
         if (Cookies >= Price)
         {
             Cookies -= Price;
             Clicking.Cookies = Cookies;
             Power++;
-   
+            Clicking.Score_Text.text = "Cookies : " + Cookies;
+
         }
     }
     

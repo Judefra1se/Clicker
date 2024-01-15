@@ -32,7 +32,7 @@ public class Clicking : MonoBehaviour
         print(Cookies);
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         Cookies++;
         Score_Text.text = "Cookies : " + Cookies;
