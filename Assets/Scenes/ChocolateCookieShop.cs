@@ -1,43 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
-public class Shop : MonoBehaviour
+public class ChocolateCookieShop : MonoBehaviour
 {
     public Clicking Clicking;
     public int Cookies;
     public int Price;
-    public int Power;
+    public GameObject NatureCookie;
+    public SpriteRenderer SRClickable, SRShop;
+    public Sprite ChocolateCookie, RainbowCookie;
 
     // Start is called before the first frame update
     void Start()
     {
         Clicking = FindObjectOfType<Clicking>();
-        Power += 1;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Cookies = Clicking.Cookies;
-        Price = 10 * Power;
-        Clicking.Power = Power;
+        Price = 30;
     }
 
     private void OnMouseDown()
     {
-        if (Cookies >= Price)
+        if (Cookies >= Price && SRShop.sprite == ChocolateCookie)
         {
             Cookies -= Price;
             Clicking.Cookies = Cookies;
-            Power++;
             Clicking.Score_Text.text = "Cookies : " + Cookies;
+
+            SRClickable.sprite = ChocolateCookie;
+            SRShop.sprite = RainbowCookie;
 
         }
     }
-    
+
 
 }
