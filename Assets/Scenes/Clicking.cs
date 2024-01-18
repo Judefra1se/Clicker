@@ -9,7 +9,10 @@ public class Clicking : MonoBehaviour
     
 {
     public int Cookies = 0;
-    public int Power;
+
+    public int PowerAutoclic;
+    public int PowerClic;
+
     private SpriteRenderer Renderer;
     public Sprite Right_Paw, Left_Paw;
     private bool isRight;
@@ -24,17 +27,19 @@ public class Clicking : MonoBehaviour
         Renderer = GetComponent<SpriteRenderer>();
         StartCoroutine(AutoClic());
 
-        Power = 1;
+        PowerAutoclic = 1;
+        PowerClic = 1;
     }
 
     private void Update()
     {
-        print(Cookies);
+
     }
 
     public void OnMouseDown()
     {
         Cookies++;
+        Cookies+= PowerClic;
         Score_Text.text = "Cookies : " + Cookies;
         ChangePaw();
     }
@@ -44,7 +49,7 @@ public class Clicking : MonoBehaviour
     {
         while (true)
         {
-            Cookies+= Power;
+            Cookies+= PowerAutoclic;
             Score_Text.text = "Cookies : " + Cookies;
             ChangePaw();
             yield return new WaitForSeconds(10);

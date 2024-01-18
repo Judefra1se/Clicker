@@ -9,13 +9,13 @@ public class Upgrade : MonoBehaviour
     public Clicking Clicking;
     public int Cookies;
     public int Price;
-    public int Power;
+    public int PowerAutoclic;
 
     // Start is called before the first frame update
     void Start()
     {
         Clicking = FindObjectOfType<Clicking>();
-        Power += 1;
+        PowerAutoclic += 1;
         
     }
 
@@ -23,8 +23,8 @@ public class Upgrade : MonoBehaviour
     void Update()
     {
         Cookies = Clicking.Cookies;
-        Price = 10 * Power;
-        Clicking.Power = Power;
+        Price = 10 * PowerAutoclic;
+        Clicking.PowerAutoclic = PowerAutoclic;
     }
 
     private void OnMouseDown()
@@ -33,7 +33,7 @@ public class Upgrade : MonoBehaviour
         {
             Cookies -= Price;
             Clicking.Cookies = Cookies;
-            Power++;
+            PowerAutoclic++;
             Clicking.Score_Text.text = "Cookies : " + Cookies;
 
         }
