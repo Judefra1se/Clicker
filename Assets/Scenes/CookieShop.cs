@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CookieShop : MonoBehaviour
 {
@@ -8,12 +10,16 @@ public class CookieShop : MonoBehaviour
     public int Cookies;
     public int PowerClic;
 
-    public int ChocolateCookiePrice = 30;
-    public int RainbowCookieCookiePrice = 60;
+    public int ChocolateCookiePrice = 100;
+    public int RainbowCookiePrice = 300;
+    public int ShrekCookiePrice = 550;
+    public TextMeshProUGUI CookiePrice;
 
     public GameObject NatureCookie;
     public SpriteRenderer SRClickable, SRShop;
-    public Sprite ChocolateCookie, RainbowCookie;
+    public Sprite ChocolateCookie, RainbowCookie, ShrekCookie;
+
+    public GameObject UpgradeCookieButton;
 
     // Start is called before the first frame update
     void Start()
@@ -40,18 +46,34 @@ public class CookieShop : MonoBehaviour
 
             SRClickable.sprite = ChocolateCookie;
             SRShop.sprite = RainbowCookie;
+            CookiePrice.text = ""+RainbowCookiePrice;
 
         }
 
-        if (Cookies >= RainbowCookieCookiePrice && SRShop.sprite == RainbowCookie)
+        if (Cookies >= RainbowCookiePrice && SRShop.sprite == RainbowCookie)
         {
-            Cookies -= RainbowCookieCookiePrice;
+            Cookies -= RainbowCookiePrice;
             Clicking.Cookies = Cookies;
             Clicking.Score_Text.text = "Cookies : " + Cookies;
             PowerClic++;
 
             SRClickable.sprite = RainbowCookie;
-            //SRShop.sprite = RainbowCookie;
+            SRShop.sprite = ShrekCookie;
+            CookiePrice.text = ""+ ShrekCookiePrice;
+
+        }
+
+                if (Cookies >= ShrekCookiePrice && SRShop.sprite == ShrekCookie)
+        {
+            Cookies -= ShrekCookiePrice;
+            Clicking.Cookies = Cookies;
+            Clicking.Score_Text.text = "Cookies : " + Cookies;
+            PowerClic++;
+
+            SRClickable.sprite = ShrekCookie;
+            Destroy (gameObject);
+            Destroy(UpgradeCookieButton);
+            Destroy(CookiePrice);
 
         }
     }
